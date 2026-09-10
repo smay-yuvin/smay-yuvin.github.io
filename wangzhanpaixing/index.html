@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网站排行-热门网站分类榜单与查询指南</title>
+<meta name="description" content="网站排行提供热门网站分类榜单、排行依据说明、查询方法与收录标准，帮助用户快速了解不同领域的网站分布与选择参考。">
+<meta name="keywords" content="网站排行,网站榜单,热门网站,网站分类排行,网站查询">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0e1420;
+  --bg-soft:#151d2c;
+  --panel:#1b2537;
+  --panel-2:#212d42;
+  --line:#2c3a52;
+  --text:#e8eef8;
+  --muted:#93a2bb;
+  --accent:#3ea6ff;
+  --accent-2:#7d5cff;
+  --gold:#f5b942;
+  --green:#39c98a;
+  --radius:14px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+/* 顶部 */
+.topbar{
+  background:linear-gradient(90deg,#101827,#16203a 60%,#1a2340);
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+  color:var(--muted);
+}
+.topbar .wrap{
+  max-width:1200px;margin:0 auto;padding:8px 20px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.topbar strong{color:var(--accent);font-weight:600}
+
+/* 页眉 */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(14,20,32,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:.5px}
+.logo-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;font-size:17px;color:#fff;font-weight:800;
+}
+.logo span small{display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:1px}
+.main-nav{display:flex;gap:6px;flex-wrap:wrap}
+.main-nav a{
+  padding:8px 14px;border-radius:9px;font-size:14px;color:var(--muted);
+  transition:.2s;border:1px solid transparent;
+}
+.main-nav a:hover{color:var(--text);background:var(--panel);border-color:var(--line)}
+.main-nav a.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent}
+.header-cta{
+  font-size:13px;padding:9px 16px;border-radius:9px;
+  border:1px solid var(--line);color:var(--text);background:var(--panel);
+}
+.header-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(900px 400px at 12% -10%,rgba(62,166,255,.20),transparent 60%),
+    radial-gradient(700px 380px at 88% 0%,rgba(125,92,255,.18),transparent 62%),
+    var(--bg-soft);
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;padding:56px 20px 48px;
+  display:grid;grid-template-columns:1.35fr .95fr;gap:40px;align-items:center;
+}
+.hero-tag{
+  display:inline-block;font-size:12px;letter-spacing:1.5px;color:var(--accent);
+  border:1px solid rgba(62,166,255,.4);background:rgba(62,166,255,.08);
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(26px,3.6vw,40px);line-height:1.3;font-weight:800;
+  letter-spacing:.5px;margin-bottom:16px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{color:var(--muted);font-size:16px;max-width:620px;margin-bottom:24px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:.2s;
+  border:1px solid transparent;cursor:pointer;
+}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);background:var(--panel);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hero-stats div strong{display:block;font-size:20px;color:var(--text)}
+.hero-stats div span{font-size:12.5px;color:var(--muted)}
+
+.hero-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+.hero-card h3{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero-card h3::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--accent)}
+.rank-mini li{
+  display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;
+}
+.rank-mini li:last-child{border-bottom:none}
+.rank-mini .no{
+  width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:12px;font-weight:700;background:var(--panel-2);color:var(--muted);flex:none;
+}
+.rank-mini li:nth-child(1) .no{background:rgba(245,185,66,.16);color:var(--gold)}
+.rank-mini li:nth-child(2) .no{background:rgba(62,166,255,.16);color:var(--accent)}
+.rank-mini li:nth-child(3) .no{background:rgba(57,201,138,.16);color:var(--green)}
+.rank-mini .name{flex:1;color:var(--text)}
+.rank-mini .cat{font-size:12px;color:var(--muted)}
+
+/* 通用区块 */
+.section{max-width:1200px;margin:0 auto;padding:52px 20px}
+.section-head{margin-bottom:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.section-head h2{font-size:22px;font-weight:700;letter-spacing:.4px}
+.section-head h2::after{content:"";display:block;width:38px;height:3px;border-radius:2px;margin-top:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+.section-head p{color:var(--muted);font-size:13.5px;max-width:520px}
+
+/* 分类 */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:14px}
+.cat-item{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 16px;transition:.22s;position:relative;overflow:hidden;
+}
+.cat-item::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transform:scaleX(0);transform-origin:left;transition:.25s;
+}
+.cat-item:hover{transform:translateY(-3px);border-color:rgba(62,166,255,.5)}
+.cat-item:hover::after{transform:scaleX(1)}
+.cat-item .ico{font-size:20px;margin-bottom:10px}
+.cat-item h3{font-size:15px;margin-bottom:6px}
+.cat-item p{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* 榜单主区 */
+.board-layout{display:grid;grid-template-columns:2.1fr 1fr;gap:26px;align-items:start}
+.board-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{
+  padding:8px 16px;font-size:13.5px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);transition:.2s;
+}
+.tab:hover{color:var(--text)}
+.tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent}
+
+.board-list{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.board-row{
+  display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;
+  padding:16px 20px;border-bottom:1px solid var(--line);transition:.2s;
+}
+.board-row:last-child{border-bottom:none}
+.board-row:hover{background:var(--panel-2)}
+.board-row .num{
+  font-size:18px;font-weight:800;color:var(--muted);text-align:center;
+  font-variant-numeric:tabular-nums;
+}
+.board-row.top1 .num{color:var(--gold)}
+.board-row.top2 .num{color:var(--accent)}
+.board-row.top3 .num{color:var(--green)}
+.board-row .info h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.board-row .info p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.board-row .meta{text-align:right;font-size:12px;color:var(--muted);white-space:nowrap}
+.board-row .meta .badge{
+  display:inline-block;margin-top:6px;font-size:11.5px;padding:3px 9px;border-radius:999px;
+  background:rgba(62,166,255,.12);color:var(--accent);border:1px solid rgba(62,166,255,.28);
+}
+.board-row .meta .badge.b2{background:rgba(125,92,255,.12);color:#a893ff;border-color:rgba(125,92,255,.3)}
+.board-row .meta .badge.b3{background:rgba(57,201,138,.12);color:var(--green);border-color:rgba(57,201,138,.3)}
+
+/* 侧栏 */
+.side{display:flex;flex-direction:column;gap:18px}
+.side-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.side-card h3{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.side-card h3::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--accent-2)}
+.side-card ol{counter-reset:s;font-size:13.5px}
+.side-card ol li{
+  counter-increment:s;padding:8px 0 8px 30px;position:relative;color:var(--muted);
+  border-bottom:1px dashed var(--line);
+}
+.side-card ol li:last-child{border-bottom:none}
+.side-card ol li::before{
+  content:counter(s);position:absolute;left:0;top:9px;width:19px;height:19px;border-radius:5px;
+  background:var(--panel-2);color:var(--accent);font-size:11px;font-weight:700;
+  display:grid;place-items:center;
+}
+.side-card ol li b{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+.side-note{font-size:12.5px;color:var(--muted);line-height:1.7}
+.side-note strong{color:var(--text)}
+
+/* 排行依据 */
+.criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.crit-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+  border-top:3px solid var(--accent);
+}
+.crit-card:nth-child(2){border-top-color:var(--accent-2)}
+.crit-card:nth-child(3){border-top-color:var(--green)}
+.crit-card:nth-child(4){border-top-color:var(--gold)}
+.crit-card h3{font-size:15px;margin-bottom:8px}
+.crit-card p{font-size:13px;color:var(--muted)}
+
+/* 指南 */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.guide-card{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+}
+.guide-card .step{
+  font-size:12px;letter-spacing:1px;color:var(--accent);font-weight:700;margin-bottom:10px;
+}
+.guide-card h3{font-size:16px;margin-bottom:10px}
+.guide-card p{font-size:13.5px;color:var(--muted)}
+.guide-card ul{margin-top:12px;font-size:13px;color:var(--muted)}
+.guide-card ul li{padding-left:16px;position:relative;margin-bottom:6px}
+.guide-card ul li::before{content:"·";position:absolute;left:4px;color:var(--accent);font-weight:700}
+
+/* 文章 */
+.article-wrap{display:grid;grid-template-columns:2.1fr 1fr;gap:26px;align-items:start}
+.article{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+}
+.article h2{font-size:20px;margin-bottom:14px}
+.article h3{font-size:16px;margin:22px 0 10px;color:#fff}
+.article p{font-size:14.5px;color:#c3cee0;margin-bottom:12px}
+.article ul{margin:0 0 14px 0;font-size:14px;color:#c3cee0}
+.article ul li{padding-left:18px;position:relative;margin-bottom:7px}
+.article ul li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+.article .tip{
+  margin-top:18px;padding:14px 16px;border-radius:10px;font-size:13.5px;
+  background:rgba(62,166,255,.08);border:1px solid rgba(62,166,255,.25);color:#c8dcf5;
+}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.faq-q{
+  padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.faq-q::after{content:"+";font-size:19px;color:var(--accent);font-weight:400;transition:.2s;flex:none}
+.faq-item.open .faq-q::after{content:"−"}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;
+  font-size:13.5px;color:var(--muted);
+}
+.faq-a p{padding:0 20px 18px}
+.faq-item.open .faq-a{max-height:400px}
+
+/* 页脚 */
+.site-footer{
+  background:#0a101a;border-top:1px solid var(--line);margin-top:20px;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;padding:44px 20px 26px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;
+}
+.footer-inner h4{font-size:14px;margin-bottom:14px;color:#fff}
+.footer-inner p,.footer-inner li{font-size:13px;color:var(--muted);line-height:1.9}
+.footer-inner li a:hover{color:var(--accent)}
+.footer-bottom{
+  border-top:1px solid var(--line);font-size:12.5px;color:#6f7f99;
+  max-width:1200px;margin:0 auto;padding:16px 20px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+/* 响应式 */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
+  .board-layout,.article-wrap{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  .header-inner{padding:12px 16px}
+  .main-nav a{padding:7px 11px;font-size:13px}
+  .header-cta{display:none}
+  .section{padding:40px 16px}
+  .hero-inner{padding:32px 16px 30px}
+  .hero-stats{gap:20px}
+  .board-row{grid-template-columns:38px 1fr;gap:12px;padding:14px 16px}
+  .board-row .meta{grid-column:2;text-align:left;margin-top:6px}
+  .article{padding:20px}
+  .footer-inner{grid-template-columns:1fr;padding:32px 16px 20px}
+  .footer-bottom{flex-direction:column;padding:14px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>榜单数据为公开信息整理与编辑判断，仅供参考，不构成任何购买或使用建议。</span>
+    <span>更新时间：<strong>持续维护中</strong></span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark">榜</span>
+      <span>网站排行<small>WEB RANKING INDEX</small></span>
+    </a>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="#categories" class="active">分类导航</a>
+      <a href="#board">热门榜单</a>
+      <a href="#criteria">排行依据</a>
+      <a href="#guide">查询指南</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="header-cta" href="#board">查看榜单 →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-tag">网站排行 · 分类榜单索引</span>
+        <h1>网站排行怎么看？<em>分类榜单</em>与查询方法一次说明</h1>
+        <p class="lead">
+          “网站排行”通常指按照访问情况、内容质量、更新频率或用户口碑等维度，对同类网站进行整理与排序的结果。
+          本站以分类为骨架，把不同领域的网站榜单集中呈现，并说明排序思路与使用方式，方便你按需求查找，而不是只看一个名次。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#board">浏览热门榜单</a>
+          <a class="btn btn-ghost" href="#guide">了解排行依据</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>8+</strong><span>主要分类方向</span></div>
+          <div><strong>4 项</strong><span>常见排行维度</span></div>
+          <div><strong>持续</strong><span>收录与整理</span></div>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="榜单速览">
+        <h3>榜单速览</h3>
+        <ul class="rank-mini">
+          <li><span class="no">1</span><span class="name">综合门户与资讯</span><span class="cat">信息获取</span></li>
+          <li><span class="no">2</span><span class="name">工具与效率服务</span><span class="cat">实用工具</span></li>
+          <li><span class="no">3</span><span class="name">影音与娱乐内容</span><span class="cat">休闲娱乐</span></li>
+          <li><span class="no">4</span><span class="name">学习与知识平台</span><span class="cat">教育学习</span></li>
+          <li><span class="no">5</span><span class="name">社区与兴趣讨论</span><span class="cat">互动交流</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 分类导航 -->
+  <section class="section" id="categories">
+    <div class="section-head">
+      <div>
+        <h2>网站分类导航</h2>
+        <p>不同类型的网站，评价标准并不相同。先确定分类，再看榜单，参考价值更高。</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <article class="cat-item">
+        <div class="ico">📰</div>
+        <h3>资讯门户</h3>
+        <p>以新闻、时事、行业动态为主，看重时效性与来源可靠性。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">🛠️</div>
+        <h3>工具服务</h3>
+        <p>在线工具、格式转换、查询服务等，看重可用性与稳定性。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">🎬</div>
+        <h3>影音娱乐</h3>
+        <p>视频、音乐、动漫等内容平台，看重内容量与更新节奏。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">📚</div>
+        <h3>学习知识</h3>
+        <p>课程、文档、百科与问答，看重内容深度与结构清晰度。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">💬</div>
+        <h3>社区论坛</h3>
+        <p>兴趣讨论与经验分享，看重活跃度与讨论氛围。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">🛒</div>
+        <h3>电商购物</h3>
+        <p>商品浏览与选购平台，看重品类覆盖与信息透明度。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">🏢</div>
+        <h3>企业官网</h3>
+        <p>品牌与业务展示，看重信息完整度与联系方式可查性。</p>
+      </article>
+      <article class="cat-item">
+        <div class="ico">🧩</div>
+        <h3>其他站点</h3>
+        <p>尚未归入以上类别的站点，按实际用途单独整理。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 榜单主体 -->
+  <section class="section" id="board">
+    <div class="section-head">
+      <div>
+        <h2>热门网站榜单</h2>
+        <p>以下为分类榜单位置示意，用于说明榜单结构。具体名次会随收录情况与判断维度调整，请结合自身需求使用。</p>
+      </div>
+    </div>
+
+    <div class="board-layout">
+      <div>
+        <div class="board-tabs" role="tablist" aria-label="榜单分类切换">
+          <button class="tab active" type="button">综合榜</button>
+          <button class="tab" type="button">资讯类</button>
+          <button class="tab" type="button">工具类</button>
+          <button class="tab" type="button">学习类</button>
+          <button class="tab" type="button">社区类</button>
+        </div>
+
+        <div class="board-list">
+          <div class="board-row top1">
+            <div class="num">01</div>
+            <div class="info">
+              <h3>综合门户类站点</h3>
+              <p>覆盖新闻、生活、财经等多类信息，适合作为日常信息入口，内容更新较为频繁。</p>
+            </div>
+            <div class="meta">信息获取<span class="badge">高频访问</span></div>
+          </div>
+          <div class="board-row top2">
+            <div class="num">02</div>
+            <div class="info">
+              <h3>在线工具类站点</h3>
+              <p>提供文档处理、格式转换、查询计算等轻量服务，打开即用，适合临时性需求。</p>
+            </div>
+            <div class="meta">实用工具<span class="badge">即开即用</span></div>
+          </div>
+          <div class="board-row top3">
+            <div class="num">03</div>
+            <div class="info">
+              <h3>知识学习类平台</h3>
+              <p>以课程、文档、词条与问答为主，内容结构相对清晰，适合系统性查阅。</p>
+            </div>
+            <div class="meta">教育学习<span class="badge b3">内容沉淀</span></div>
+          </div>
+          <div class="board-row">
+            <div class="num">04</div>
+            <div class="info">
+              <h3>影音娱乐类平台</h3>
+              <p>视频、音频与动漫内容集中，更新节奏较快，适合按兴趣订阅浏览。</p>
+            </div>
+            <div class="meta">休闲娱乐<span class="badge b2">更新活跃</span></div>
+          </div>
+          <div class="board-row">
+            <div class="num">05</div>
+            <div class="info">
+              <h3>兴趣社区与论坛</h3>
+              <p>围绕特定话题展开讨论，内容多来自用户分享，适合查找经验类信息。</p>
+            </div>
+            <div class="meta">互动交流<span class="badge b2">用户产出</span></div>
+          </div>
+          <div class="board-row">
+            <div class="num">06</div>
+            <div class="info">
+              <h3>电商与购物平台</h3>
+              <p>以商品信息与选购服务为主，页面结构围绕分类、搜索与详情展开。</p>
+            </div>
+            <div class="meta">购物消费<span class="badge">品类丰富</span></div>
+          </div>
+          <div class="board-row">
+            <div class="num">07</div>
+            <div class="info">
+              <h3>企业官网与品牌站</h3>
+              <p>用于展示业务范围、产品信息与联系方式，内容相对稳定，更新频率较低。</p>
+            </div>
+            <div class="meta">品牌展示<span class="badge b3">信息稳定</span></div>
+          </div>
+          <div class="board-row">
+            <div class="num">08</div>
+            <div class="info">
+              <h3>下载与资源站</h3>
+              <p>提供软件、素材等资源索引，使用前需注意来源与安全性判断。</p>
+            </div>
+            <div class="meta">资源获取<span class="badge">注意安全</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="side-card">
+          <h3>榜单观察要点</h3>
+          <ol>
+            <li><b>先看分类</b>跨类别比较名次意义有限，同类对比才更接近真实需求。</li>
+            <li><b>再看维度</b>访问量、内容量、更新频率、口碑，各自指向不同的结论。</li>
+            <li><b>最后看时效</b>榜单反映的是某段时间的情况，长期使用需自行复核。</li>
+          </ol>
+        </div>
+        <div class="side-card">
+          <h3>使用提醒</h3>
+          <p class="side-note">
+            榜单是一种<strong>信息整理方式</strong>，不是权威认证。任何名次都不代表对网站内容、安全性或服务的保证。
+            涉及账号、支付或下载操作时，请以官方渠道信息为准。
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 排行依据 -->
+  <section class="section" id="criteria">
+    <div class="section-head">
+      <div>
+        <h2>网站排行的常见依据</h2>
+        <p>不同榜单采用的维度不同，理解维度比记住名次更重要。</p>
+      </div>
+    </div>
+    <div class="criteria">
+      <article class="crit-card">
+        <h3>访问与使用情况</h3>
+        <p>包括访问量、停留时间、回访比例等指标。这类数据通常来自统计工具，反映的是使用规模，但不直接等于内容质量。</p>
+      </article>
+      <article class="crit-card">
+        <h3>内容与更新频率</h3>
+        <p>关注内容是否完整、结构是否清晰、更新是否稳定。对资讯、影音、学习类网站来说，这一维度权重通常更高。</p>
+      </article>
+      <article class="crit-card">
+        <h3>功能与可用性</h3>
+        <p>页面能否正常打开、功能是否可用、移动端体验如何。工具类与服务类网站尤其看重这一点。</p>
+      </article>
+      <article class="crit-card">
+        <h3>用户口碑与反馈</h3>
+        <p>来自公开讨论中的评价与使用体验。口碑信息主观性较强，适合作为参考，不宜作为唯一判断标准。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 查询指南 -->
+  <section class="section" id="guide">
+    <div class="section-head">
+      <div>
+        <h2>如何查询与使用网站排行</h2>
+        <p>按需求选分类、按维度看榜单、按场景做复核，是较为稳妥的使用顺序。</p>
+      </div>
+    </div>
+    <div class="guide-grid">
+      <article class="guide-card">
+        <div class="step">STEP 01</div>
+        <h3>明确你要找什么</h3>
+        <p>先确定需求属于哪一类：查资料、找工具、看内容，还是找服务。需求越具体，榜单参考价值越高。</p>
+        <ul>
+          <li>信息获取 → 看资讯与知识类</li>
+          <li>临时任务 → 看工具与服务类</li>
+          <li>休闲浏览 → 看影音与社区类</li>
+        </ul>
+      </article>
+      <article class="guide-card">
+        <div class="step">STEP 02</div>
+        <h3>对照榜单维度</h3>
+        <p>同一分类下，不同榜单的排序可能不同，原因往往在于维度差异。先看榜单说明，再判断是否符合你的关注点。</p>
+        <ul>
+          <li>重内容 → 关注内容量与更新</li>
+          <li>重体验 → 关注功能与稳定性</li>
+          <li>重交流 → 关注活跃与氛围</li>
+        </ul>
+      </article>
+      <article class="guide-card">
+        <div class="step">STEP 03</div>
+        <h3>实际打开复核</h3>
+        <p>榜单只是入口。真正使用前，建议亲自打开页面，确认内容是否符合预期、功能是否正常、信息是否清晰。</p>
+        <ul>
+          <li>检查页面是否可正常访问</li>
+          <li>确认信息更新时间</li>
+          <li>留意隐私与安全提示</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- 文章 + 侧栏 -->
+  <section class="section">
+    <div class="article-wrap">
+      <article class="article">
+        <h2>关于“网站排行”的几点说明</h2>
+        <p>
+          网站排行这个词，本身并不指向某一个固定榜单，而是描述一类信息整理行为：把大量网站按照某种标准放在一起比较。
+          因此，看到一份榜单时，第一件值得确认的事不是“谁排第一”，而是“它按什么排”。
+        </p>
+
+        <h3>为什么不同榜单结果差别很大</h3>
+        <p>
+          原因通常有三点。第一，样本范围不同，有的榜单只收录某一类站点，有的则覆盖多个领域；第二，数据来源不同，
+          有的依赖统计工具，有的来自编辑整理或用户提交；第三，时间窗口不同，短期波动和长期趋势会得出不一样的名次。
+          这些差异并不一定意味着榜单有问题，而是说明它服务于不同的使用场景。
+        </p>
+
+        <h3>名次高是否等于更适合你</h3>
+        <p>
+          不一定。名次反映的是整体情况，而你的需求可能是具体的。例如一个综合访问量很高的资讯站，未必适合查找某个专业领域的资料；
+          一个功能简单的工具站，反而可能更贴合你的即时需求。把榜单当作筛选起点，而不是最终答案，通常更实用。
+        </p>
+
+        <h3>使用榜单时的注意事项</h3>
+        <ul>
+          <li>优先选择说明了排序依据与更新时间的榜单，信息透明度更高。</li>
+          <li>跨类别比较名次意义有限，尽量在同一分类内对照。</li>
+          <li>涉及账号注册、付费或下载时，以站点官方说明为准，注意辨别来源。</li>
+          <li>榜单具有时效性，长期使用前建议重新确认当前情况。</li>
+        </ul>
+
+        <div class="tip">
+          提示：本站对网站的分类与位置安排，基于公开可查的信息与编辑判断，用于帮助理解“网站排行”这一概念及其使用方式，
+          不对任何具体站点的内容、安全性或服务水平作出承诺。
+        </div>
+      </article>
+
+      <aside class="side">
+        <div class="side-card">
+          <h3>快速自查清单</h3>
+          <ol>
+            <li><b>需求是否明确</b>知道自己要找哪类网站。</li>
+            <li><b>分类是否一致</b>避免跨类别比较名次。</li>
+            <li><b>维度是否匹配</b>榜单标准与你的关注点是否一致。</li>
+            <li><b>信息是否新鲜</b>榜单更新时间是否接近当前。</li>
+            <li><b>页面是否可用</b>实际打开确认后再做判断。</li>
+          </ol>
+        </div>
+        <div class="side-card">
+          <h3>相关概念</h3>
+          <p class="side-note">
+            <strong>网站分类：</strong>按用途或内容类型对站点进行归组。<br>
+            <strong>榜单维度：</strong>排序所依据的具体指标。<br>
+            <strong>收录标准：</strong>一个站点进入榜单需要满足的条件。
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-head">
+      <div>
+        <h2>常见问题</h2>
+        <p>关于网站排行，用户最常提出的几个疑问。</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">网站排行的名次是固定不变的吗？</div>
+        <div class="faq-a"><p>不是。网站的内容、功能和使用情况都会随时间变化，榜单反映的是某一段时间内的情况。不同时间查看，结果可能存在差异。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">排名靠前的网站一定更安全吗？</div>
+        <div class="faq-a"><p>不能这样理解。排行通常反映的是内容、功能或使用规模等维度，与安全性没有必然关系。涉及账号、支付或下载时，仍需自行核实来源与官方说明。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">为什么同一类网站，不同榜单排法不一样？</div>
+        <div class="faq-a"><p>主要因为排序维度、样本范围和统计时间不同。有的侧重访问情况，有的侧重内容质量，有的由编辑整理。先看榜单说明，再判断是否适合你的需求。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">怎样更高效地使用网站排行？</div>
+        <div class="faq-a"><p>建议按“确定需求 → 选择分类 → 对照维度 → 实际打开复核”的顺序进行。把榜单当作筛选起点，而不是唯一依据，通常能得到更符合自身需求的结果。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">网站排行可以用于商业决策吗？</div>
+        <div class="faq-a"><p>榜单可以作为了解行业分布的参考信息之一，但不宜作为唯一依据。涉及商业判断时，建议结合多方信息与实际情况综合评估。</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <h4>网站排行</h4>
+      <p>围绕“网站排行”这一主题，整理分类榜单结构、排行维度与查询方法，帮助用户更清晰地理解和使用榜单信息。</p>
+    </div>
+    <div>
+      <h4>内容导航</h4>
+      <ul>
+        <li><a href="#categories">分类导航</a></li>
+        <li><a href="#board">热门榜单</a></li>
+        <li><a href="#criteria">排行依据</a></li>
+        <li><a href="#guide">查询指南</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>常见分类</h4>
+      <ul>
+        <li><a href="#categories">资讯门户</a></li>
+        <li><a href="#categories">工具服务</a></li>
+        <li><a href="#categories">学习知识</a></li>
+        <li><a href="#categories">社区论坛</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>使用说明</h4>
+      <ul>
+        <li>榜单信息仅供参考</li>
+        <li>不构成使用建议</li>
+        <li>请以官方渠道为准</li>
+        <li>注意辨别信息来源</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 网站排行 · 分类榜单与查询指南</span>
+    <span>内容以信息整理与概念说明为主，请结合实际情况判断使用。</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // FAQ 折叠
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    q.addEventListener('click', function(){
+      item.classList.toggle('open');
+    });
+  });
+
+  // 榜单分类切换（示意性切换，仅改变选中态与提示）
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+    });
+  });
+
+  // 导航平滑定位（兼容处理）
+  document.querySelectorAll('.main-nav a, .hero-actions a, .header-cta').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var href = link.getAttribute('href');
+      if(href && href.charAt(0) === '#'){
+        var target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+  </html>
