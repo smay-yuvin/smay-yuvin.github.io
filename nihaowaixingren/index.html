@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你好外星人-外星生命探索与科幻文化指南</title>
+<meta name="description" content="你好外星人：探索外星生命存在的科学可能、科幻作品中的外星人形象、天文观测方法与大众文化中的外星人话题，提供理性、有趣的科普视角。">
+<meta name="keywords" content="你好外星人,外星人,外星生命,地外文明,科幻,天文科普,费米悖论">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --space-deep: #0a0e2a;
+        --space-mid: #131a45;
+        --space-light: #1e2a6e;
+        --glow-cyan: #4ee1ff;
+        --glow-purple: #a56bff;
+        --glow-green: #5cf2a4;
+        --text-main: #eaf0ff;
+        --text-sub: #a8b6e0;
+        --card-bg: rgba(30, 42, 110, 0.55);
+        --card-border: rgba(78, 225, 255, 0.22);
+    }
+
+    body {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+        background: var(--space-deep);
+        background-image:
+            radial-gradient(ellipse at 15% 10%, rgba(165, 107, 255, 0.18) 0%, transparent 55%),
+            radial-gradient(ellipse at 85% 20%, rgba(78, 225, 255, 0.14) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 95%, rgba(92, 242, 164, 0.08) 0%, transparent 60%);
+        color: var(--text-main);
+        line-height: 1.75;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* ============ 顶部导航 ============ */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(10, 14, 42, 0.88);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(78, 225, 255, 0.15);
+    }
+
+    .header-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 66px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.22rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    .logo-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 30%, var(--glow-cyan), var(--glow-purple) 70%, #2a1a5e);
+        box-shadow: 0 0 16px rgba(78, 225, 255, 0.55);
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .logo-mark::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1.5px solid rgba(255, 255, 255, 0.75);
+        border-radius: 50%;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        transform: rotate(35deg);
+    }
+
+    .logo span b {
+        color: var(--glow-cyan);
+    }
+
+    .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .main-nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.94rem;
+        color: var(--text-sub);
+        transition: color 0.2s, background 0.2s;
+    }
+
+    .main-nav a:hover {
+        color: var(--glow-cyan);
+        background: rgba(78, 225, 255, 0.09);
+    }
+
+    /* ============ 首屏 ============ */
+    .hero {
+        position: relative;
+        padding: 74px 22px 64px;
+        overflow: hidden;
+    }
+
+    .hero-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 46px;
+        align-items: center;
+    }
+
+    .hero-tag {
+        display: inline-block;
+        font-size: 0.82rem;
+        letter-spacing: 1.5px;
+        color: var(--glow-cyan);
+        border: 1px solid rgba(78, 225, 255, 0.4);
+        border-radius: 999px;
+        padding: 5px 15px;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.65rem;
+        line-height: 1.28;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(100deg, var(--glow-cyan), var(--glow-purple) 60%, var(--glow-green));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .hero p.lead {
+        font-size: 1.05rem;
+        color: var(--text-sub);
+        max-width: 620px;
+        margin-bottom: 30px;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 26px;
+        border-radius: 10px;
+        font-size: 0.98rem;
+        font-weight: 600;
+        transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(100deg, #2fb8e6, #7a5cf0);
+        color: #fff;
+        box-shadow: 0 8px 26px rgba(78, 225, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(78, 225, 255, 0.42);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: var(--glow-cyan);
+        border: 1px solid rgba(78, 225, 255, 0.45);
+    }
+
+    .btn-ghost:hover {
+        background: rgba(78, 225, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* 星球视觉 */
+    .hero-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        min-height: 300px;
+    }
+
+    .planet {
+        width: 230px;
+        height: 230px;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle at 34% 30%, #6ef0ff 0%, #3a7bd5 32%, #4b2f9e 62%, #1a1145 100%);
+        box-shadow:
+            0 0 60px rgba(78, 225, 255, 0.35),
+            inset -22px -18px 50px rgba(0, 0, 0, 0.55);
+        position: relative;
+    }
+
+    .planet::before {
+        content: "";
+        position: absolute;
+        inset: -34px;
+        border-radius: 50%;
+        border: 2px solid rgba(165, 107, 255, 0.45);
+        border-left-color: transparent;
+        border-right-color: transparent;
+        transform: rotate(-24deg) scaleY(0.42);
+    }
+
+    .orbit-dot {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--glow-green);
+        box-shadow: 0 0 14px var(--glow-green);
+        top: 12%;
+        right: 14%;
+        animation: floaty 4.5s ease-in-out infinite;
+    }
+
+    @keyframes floaty {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-16px); }
+    }
+
+    /* ============ 通用区块 ============ */
+    .section {
+        padding: 58px 22px;
+    }
+
+    .section-alt {
+        background: rgba(19, 26, 69, 0.5);
+        border-top: 1px solid rgba(78, 225, 255, 0.1);
+        border-bottom: 1px solid rgba(78, 225, 255, 0.1);
+    }
+
+    .container {
+        max-width: 1180px;
+        margin: 0 auto;
+    }
+
+    .section-head {
+        margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+        font-size: 1.72rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+    }
+
+    .section-head h2::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 20px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, var(--glow-cyan), var(--glow-purple));
+        margin-right: 12px;
+        vertical-align: -2px;
+    }
+
+    .section-head p {
+        color: var(--text-sub);
+        font-size: 0.97rem;
+        max-width: 780px;
+    }
+
+    /* ============ 主题卡片网格 ============ */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 26px 24px;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(78, 225, 255, 0.55);
+        box-shadow: 0 14px 34px rgba(10, 14, 42, 0.7);
+    }
+
+    .card .card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+        background: rgba(78, 225, 255, 0.12);
+        border: 1px solid rgba(78, 225, 255, 0.28);
+    }
+
+    .card h3 {
+        font-size: 1.14rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .card p {
+        font-size: 0.93rem;
+        color: var(--text-sub);
+    }
+
+    /* ============ 科学探索列表 ============ */
+    .explore-layout {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    .explore-list {
+        list-style: none;
+        counter-reset: explore;
+    }
+
+    .explore-list li {
+        counter-increment: explore;
+        position: relative;
+        padding: 0 0 24px 60px;
+        border-left: 1px dashed rgba(78, 225, 255, 0.28);
+        margin-left: 18px;
+    }
+
+    .explore-list li:last-child {
+        border-left-color: transparent;
+        padding-bottom: 0;
+    }
+
+    .explore-list li::before {
+        content: counter(explore);
+        position: absolute;
+        left: -19px;
+        top: -2px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(140deg, #1e2a6e, #2b1a63);
+        border: 1px solid rgba(78, 225, 255, 0.5);
+        color: var(--glow-cyan);
+        font-weight: 700;
+        font-size: 0.92rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .explore-list h3 {
+        font-size: 1.08rem;
+        margin-bottom: 6px;
+    }
+
+    .explore-list p {
+        font-size: 0.93rem;
+        color: var(--text-sub);
+    }
+
+    .fact-panel {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 26px;
+    }
+
+    .fact-panel h3 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+        color: var(--glow-cyan);
+    }
+
+    .fact-panel dl {
+        display: grid;
+        gap: 14px;
+    }
+
+    .fact-panel dt {
+        font-weight: 700;
+        font-size: 0.95rem;
+    }
+
+    .fact-panel dd {
+        font-size: 0.9rem;
+        color: var(--text-sub);
+        margin-top: 2px;
+    }
+
+    /* ============ 科幻文化 ============ */
+    .culture-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .culture-item {
+        display: flex;
+        gap: 18px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 22px;
+    }
+
+    .culture-badge {
+        flex-shrink: 0;
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: linear-gradient(140deg, rgba(165, 107, 255, 0.35), rgba(78, 225, 255, 0.2));
+        border: 1px solid rgba(165, 107, 255, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+    }
+
+    .culture-item h3 {
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+    }
+
+    .culture-item p {
+        font-size: 0.91rem;
+        color: var(--text-sub);
+    }
+
+    /* ============ 观测指南 ============ */
+    .guide-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    .guide-step {
+        background: rgba(19, 26, 69, 0.65);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 22px 20px;
+        position: relative;
+    }
+
+    .guide-step .step-num {
+        font-size: 0.8rem;
+        letter-spacing: 1.2px;
+        color: var(--glow-green);
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .guide-step h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .guide-step p {
+        font-size: 0.88rem;
+        color: var(--text-sub);
+    }
+
+    /* ============ FAQ ============ */
+    .faq-list {
+        display: grid;
+        gap: 14px;
+        max-width: 900px;
+    }
+
+    .faq-item {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 20px 24px;
+    }
+
+    .faq-item h3 {
+        font-size: 1.02rem;
+        margin-bottom: 8px;
+        color: var(--glow-cyan);
+    }
+
+    .faq-item p {
+        font-size: 0.93rem;
+        color: var(--text-sub);
+    }
+
+    /* ============ 页脚 ============ */
+    .site-footer {
+        background: rgba(8, 11, 34, 0.9);
+        border-top: 1px solid rgba(78, 225, 255, 0.14);
+        padding: 46px 22px 26px;
+    }
+
+    .footer-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr;
+        gap: 36px;
+    }
+
+    .footer-brand p {
+        font-size: 0.9rem;
+        color: var(--text-sub);
+        margin-top: 14px;
+        max-width: 400px;
+    }
+
+    .footer-col h4 {
+        font-size: 0.98rem;
+        margin-bottom: 14px;
+        color: var(--glow-cyan);
+    }
+
+    .footer-col ul {
+        list-style: none;
+        display: grid;
+        gap: 9px;
+    }
+
+    .footer-col a {
+        font-size: 0.9rem;
+        color: var(--text-sub);
+        transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+        color: var(--glow-cyan);
+    }
+
+    .footer-bottom {
+        max-width: 1180px;
+        margin: 32px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(78, 225, 255, 0.12);
+        font-size: 0.84rem;
+        color: #7c8ab5;
+        text-align: center;
+    }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 980px) {
+        .hero-inner {
+            grid-template-columns: 1fr;
+            gap: 34px;
+        }
+
+        .hero-visual {
+            min-height: 240px;
+            order: -1;
+        }
+
+        .planet {
+            width: 180px;
+            height: 180px;
+        }
+
+        .card-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .explore-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .guide-steps {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .header-inner {
+            height: auto;
+            padding: 12px 18px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .main-nav {
+            gap: 2px;
+        }
+
+        .main-nav a {
+            padding: 6px 10px;
+            font-size: 0.88rem;
+        }
+
+        .hero {
+            padding: 50px 18px 46px;
+        }
+
+        .hero h1 {
+            font-size: 1.92rem;
+        }
+
+        .hero p.lead {
+            font-size: 0.97rem;
+        }
+
+        .section {
+            padding: 44px 18px;
+        }
+
+        .section-head h2 {
+            font-size: 1.42rem;
+        }
+
+        .card-grid,
+        .culture-grid,
+        .guide-steps {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-inner {
+            grid-template-columns: 1fr;
+            gap: 26px;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo">
+            <span class="logo-mark" aria-hidden="true"></span>
+            <span>你好<b>外星人</b></span>
+        </div>
+        <nav class="main-nav" aria-label="主导航">
+            <a href="#science">科学探索</a>
+            <a href="#culture">科幻文化</a>
+            <a href="#guide">观测入门</a>
+            <a href="#faq">常见问题</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- 首屏 -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <span class="hero-tag">地外生命 · 科普与文化</span>
+                <h1>你好外星人：<em>我们为什么一直在寻找宇宙邻居</em></h1>
+                <p class="lead">
+                    从射电望远镜捕捉到的神秘信号，到科幻电影里千姿百态的外星形象，“外星人”始终是人类好奇心最集中的方向之一。这里汇集外星生命探索的科学思路、科幻文化中的经典设定，以及普通人也能参与的观测与思考方式。
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#science">了解科学探索</a>
+                    <a class="btn btn-ghost" href="#guide">观测入门指南</a>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="planet">
+                    <span class="orbit-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 科学探索 -->
+    <section class="section section-alt" id="science">
+        <div class="container">
+            <div class="section-head">
+                <h2>外星生命探索的科学路径</h2>
+                <p>寻找外星人并不是玄学，而是一系列有明确方法、有观测对象、有推理逻辑的科学研究方向。下面几个方向构成了当代地外生命探索的主要框架。</p>
+            </div>
+
+            <div class="explore-layout">
+                <ol class="explore-list">
+                    <li>
+                        <h3>射电信号搜寻</h3>
+                        <p>通过大型射电望远镜扫描天空，寻找自然界难以产生的窄带无线电信号。这类信号如果存在，可能来自技术文明的主动或无意发射，是目前搜寻地外文明计划的核心手段之一。</p>
+                    </li>
+                    <li>
+                        <h3>系外行星与宜居带</h3>
+                        <p>天文学家已经确认了数以千计的系外行星。判断一颗行星是否可能孕育生命，通常要看它是否位于恒星周围的宜居带、是否有液态水存在的条件，以及大气成分是否值得进一步分析。</p>
+                    </li>
+                    <li>
+                        <h3>太阳系内的生命线索</h3>
+                        <p>火星地下的液态水、木卫二和土卫二冰层下的海洋，都是太阳系内被认为可能支持微生物生存的环境。探测器对这些区域的成分分析，是寻找简单生命形式的重要途径。</p>
+                    </li>
+                    <li>
+                        <h3>大气光谱与生物标志物</h3>
+                        <p>当行星从恒星前方经过时，穿过其大气的星光会被部分吸收。分析这些光谱特征，有助于判断大气中是否存在氧气、甲烷等可能与生命活动相关的成分。</p>
+                    </li>
+                </ol>
+
+                <aside class="fact-panel">
+                    <h3>理解探索的关键概念</h3>
+                    <dl>
+                        <dt>费米悖论</dt>
+                        <dd>如果宇宙中存在大量文明，为什么我们至今没有发现任何确凿证据？这个矛盾是讨论外星人话题时绕不开的起点。</dd>
+                        <dt>德雷克方程</dt>
+                        <dd>一个用来估算银河系中可能存在的可通信文明数量的思路框架，参数多为推测值，更多用于梳理影响因素。</dd>
+                        <dt>大过滤器</dt>
+                        <dd>一种假说，认为生命演化到星际文明的过程中存在若干极难跨越的障碍，这或许解释了宇宙的“安静”。</dd>
+                        <dt>不明飞行物现象</dt>
+                        <dd>多数可被解释为气象、航空器或光学现象，少数案例仍待分析。科学态度是保留疑问，同时依靠证据判断。</dd>
+                    </dl>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 科幻文化 -->
+    <section class="section" id="culture">
+        <div class="container">
+            <div class="section-head">
+                <h2>科幻作品里的外星人形象</h2>
+                <p>外星人不仅是科学问题，也是文化现象。不同时代的作品，用不同的外星形象回应着人类对自身、对未知、对差异的想象。</p>
+            </div>
+
+            <div class="culture-grid">
+                <article class="culture-item">
+                    <div class="culture-badge" aria-hidden="true">👽</div>
+                    <div>
+                        <h3>友好访客型</h3>
+                        <p>这类外星人通常被塑造成和平、好奇、愿意交流的形象，故事往往围绕理解与沟通展开，强调跨越差异建立联系的可能。</p>
+                    </div>
+                </article>
+                <article class="culture-item">
+                    <div class="culture-badge" aria-hidden="true">🛸</div>
+                    <div>
+                        <h3>技术碾压型</h3>
+                        <p>拥有远超人类科技的外星文明，常被用来讨论力量差距、伦理边界和人类在宇宙中的位置，是科幻中极具张力的设定。</p>
+                    </div>
+                </article>
+                <article class="culture-item">
+                    <div class="culture-badge" aria-hidden="true">🌌</div>
+                    <div>
+                        <h3>生态异质型</h3>
+                        <p>外星生命不一定类人，可能是气态生物、群体智能或硅基形态。这类想象拓展了“生命”定义的边界，也挑战着我们的认知习惯。</p>
+                    </div>
+                </article>
+                <article class="culture-item">
+                    <div class="culture-badge" aria-hidden="true">📡</div>
+                    <div>
+                        <h3>沉默观察型</h3>
+                        <p>一些作品设定外星文明早已存在却选择不接触人类，借此探讨孤独、观察者视角以及文明之间是否应当保持距离。</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 观测入门 -->
+    <section class="section section-alt" id="guide">
+        <div class="container">
+            <div class="section-head">
+                <h2>普通人如何参与外星人话题</h2>
+                <p>即使没有专业设备，也可以从观测、记录和学习入手，理性而有趣地参与地外生命相关的讨论与活动。</p>
+            </div>
+
+            <div class="guide-steps">
+                <div class="guide-step">
+                    <span class="step-num">STEP 01</span>
+                    <h3>熟悉夜空</h3>
+                    <p>先认识常见星座和行星的运行规律。掌握基础天文常识，能帮你更快分辨哪些是自然天体、哪些可能是人造物体。</p>
+                </div>
+                <div class="guide-step">
+                    <span class="step-num">STEP 02</span>
+                    <h3>记录异常现象</h3>
+                    <p>如果看到无法辨认的空中现象，记录时间、方位、持续时长和运动方式。客观记录比主观描述更有参考价值。</p>
+                </div>
+                <div class="guide-step">
+                    <span class="step-num">STEP 03</span>
+                    <h3>关注官方信息</h3>
+                    <p>航天机构与天文台会发布卫星过境、火箭发射等信息。很多“不明飞行物”在比对后都能找到合理解释。</p>
+                </div>
+                <div class="guide-step">
+                    <span class="step-num">STEP 04</span>
+                    <h3>保持开放与审慎</h3>
+                    <p>对外星生命保持好奇，同时对未经验证的说法保持谨慎。科学的态度是：不轻易否定，也不轻易相信。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-head">
+                <h2>关于外星人的常见问题</h2>
+                <p>以下问题整理自大众最常提出的疑问，回答尽量基于目前公开的科学认识，避免夸大或臆断。</p>
+            </div>
+
+            <div class="faq-list">
+                <article class="faq-item">
+                    <h3>外星人真的存在吗？</h3>
+                    <p>目前没有公开确凿的证据证明外星智慧生命存在，但宇宙中行星数量极其庞大，许多科学家认为简单生命甚至智慧生命存在的可能性不能被排除。这是一个仍在探索中的开放问题。</p>
+                </article>
+                <article class="faq-item">
+                    <h3>那些“外星信号”是真的吗？</h3>
+                    <p>历史上多次出现疑似外星信号的事件，绝大多数最终被解释为自然现象、人造干扰或数据处理中的误差。少数案例仍未有定论，但也不足以作为外星文明存在的证据。</p>
+                </article>
+                <article class="faq-item">
+                    <h3>为什么科学家还在坚持寻找？</h3>
+                    <p>因为这个问题关系到人类在宇宙中的位置，也推动着望远镜技术、信号处理和行星科学的发展。即使最终没有找到，探索过程本身也会带来大量科学收获。</p>
+                </article>
+                <article class="faq-item">
+                    <h3>如果真遇到外星文明，会发生什么？</h3>
+                    <p>这属于推测性话题，目前没有公认答案。学界更多讨论的是如何以负责任的方式对待可能的接触，包括信息共享、国际协作和风险评估等原则性问题。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="logo">
+                <span class="logo-mark" aria-hidden="true"></span>
+                <span>你好<b>外星人</b></span>
+            </div>
+            <p>一个围绕地外生命探索、科幻文化与天文科普的内容站点，希望用理性的视角和有趣的方式，陪你一起仰望星空。</p>
+        </div>
+        <div class="footer-col">
+            <h4>内容导航</h4>
+            <ul>
+                <li><a href="#science">科学探索</a></li>
+                <li><a href="#culture">科幻文化</a></li>
+                <li><a href="#guide">观测入门</a></li>
+                <li><a href="#faq">常见问题</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>相关方向</h4>
+            <ul>
+                <li><a href="#science">系外行星</a></li>
+                <li><a href="#science">射电天文</a></li>
+                <li><a href="#culture">科幻作品</a></li>
+                <li><a href="#guide">夜空观测</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 你好外星人 · 内容仅供科普与文化参考，不构成任何科学结论
+    </div>
+</footer>
+
+</body>
+  </html>
